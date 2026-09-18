@@ -4,6 +4,7 @@
     {
         static void Main(string[] args)
         {
+            //ALL VARIABLES GATHERED HERE
             string userInput;
 
             int userGuess;
@@ -13,6 +14,7 @@
 
             bool won = false;
 
+            //ACTUAL GAME LOOP
             while (true)
             {
                 won = false;
@@ -20,12 +22,13 @@
                 Console.Write("Välkommen! ");
                 randomNumber = Svårighet(); //CALLING OUR METHOD WHICH ALSO CONTAINS MORE OUTPUTS FOR USERS 
 
-                Console.Write("\nKan du gissa vilket? Du får 5 försök: ");
+                Console.Write("Kan du gissa vilket? Du får 5 försök: ");
 
                 //THE ACTUAL PLAY LOOP BASED ON HOW MANY TIMES THE HAVE GUESSED
                 for (guessAmount = 0; guessAmount < 5; guessAmount++)
                 {
                     //ONLY TELLS USERS HOW  MANY GUESSES THEY HAVE LEFT AFTER THE FIRST LOOP
+                    //BECAUSE IT STARTED WITH SAYING THAT WE HAVE 5 TRIES SO IT'S UNNECESSARY, IN MY OPINION 
                     if (guessAmount > 0)
                     {
                         int guessesLeft = 5 - guessAmount;
@@ -36,7 +39,7 @@
                     while (!int.TryParse(Console.ReadLine(), out userGuess))
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Snälla svara i heltal...");
+                        Console.Write("Snälla svara i heltal... Försök igen: ");
                         Console.ResetColor();
                     }
 
@@ -55,20 +58,21 @@
                         //IF THE GUESS IS UP TO 5 NUMBERS AWAY FROM THE ANSWER THIS WILL RUN
                         if (userGuess - randomNumber <= 5)
                         {
-                            Console.WriteLine(" Men det var väldigt nära!\n");
+                            Console.WriteLine(" Men det var väldigt nära!");
                         }
                     }
-                    else if (userGuess < randomNumber) //NOT NEEDED BUT I LIKE IT FOR CLARITY!
+                    else if (userGuess < randomNumber) //I COULD USE AN ELSE INSTEAD BUT I LIKE THIS FOR EXTRA CLARITY!
                     {
                         Console.Write("\nTyvärr, du gissade för lågt!");
                         
                         //SAME AS ABOVE!
                         if (randomNumber - userGuess <= 5)
                         {
-                            Console.WriteLine(" Men det var väldigt nära!\n");
+                            Console.WriteLine(" Men det var väldigt nära!");
                         }
                     }
                 }
+
                 //IF THE USER WON THE VARIABLE BECOMES TRUE AND THIS RUNS
                 if (won)
                 {         
@@ -110,6 +114,7 @@
             }
 
         }
+
         static int Svårighet()
         {
             int userInput;
@@ -131,23 +136,23 @@
             {
                 case 1:
                     randomNumber = random.Next(1, 21);
-                    Console.WriteLine("Okej, jag tänker på ett nummer mellan 1 och 20.");
+                    Console.WriteLine("\nOkej, jag tänker på ett nummer mellan 1 och 20.");
                     break;
                 case 2:
                     randomNumber = random.Next(1, 41);
-                    Console.WriteLine("Okej, jag tänker på ett nummer mellan 1 och 40");
+                    Console.WriteLine("\nOkej, jag tänker på ett nummer mellan 1 och 40");
                     break;
                 case 3:
                     randomNumber = random.Next(1, 61);
-                    Console.WriteLine("Okej, jag tänker på ett nummer mellan 1 och 60");
+                    Console.WriteLine("\nOkej, jag tänker på ett nummer mellan 1 och 60");
                     break;
                 case 4:
                     randomNumber = random.Next(1, 81);
-                    Console.WriteLine("Okej, jag tänker på ett nummer mellan 1 och 80");
+                    Console.WriteLine("\nOkej, jag tänker på ett nummer mellan 1 och 80");
                     break;
                 case 5:
                     randomNumber = random.Next(1, 101);
-                    Console.WriteLine("Okej, jag tänker på ett nummer mellan 1 och 100");
+                    Console.WriteLine("\nOkej, jag tänker på ett nummer mellan 1 och 100");
                     break;
                 default:
                     //FOR ANYTHING UNEXPECTED
@@ -155,5 +160,6 @@
             }            
             return randomNumber;
         }
+
     }
 }
